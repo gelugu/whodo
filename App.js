@@ -1,12 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { Alert, Modal, StyleSheet, View } from "react-native";
+import { Answer } from "./src/Answer";
+import { Question } from "./src/Question";
+import { COLORS } from "./src/styleConfig";
 
 export default function App() {
+  const [problem, setProblem] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Question setProblem={setProblem} setModalVisible={setModalVisible} />
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <Answer
+          problem={problem}
+          clearProplem={setProblem.bind(null, "")}
+          setModalVisible={setModalVisible}
+        />
+      </Modal>
     </View>
   );
 }
@@ -14,8 +32,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: COLORS.light,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
