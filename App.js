@@ -15,9 +15,7 @@ export default function App() {
         animationType="slide"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
+        onRequestClose={setModalVisible.bind(null, !modalVisible)}
       >
         <Answer
           problem={problem}
