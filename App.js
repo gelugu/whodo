@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, View } from "react-native";
+import { Sandbox } from "./Sandbox";
 import { Answer } from "./src/Answer";
 import { Question } from "./src/Question";
 import { COLORS } from "./src/styleConfig";
 
+const SANDBOX = true;
+
 export default function App() {
   const [problem, setProblem] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+
+  if (SANDBOX) return <Sandbox />
 
   return (
     <View style={styles.container}>
