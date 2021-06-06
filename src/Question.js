@@ -37,7 +37,7 @@ export const Question = ({ setProblem, setModalVisible }) => {
       setProblem(question);
       clearQuestionField();
     } else {
-      setProblem("Что бы это ни было,");
+      setProblem("Что бы это ни было, оно");
     }
     setModalVisible(true);
   };
