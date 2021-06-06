@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, StyleSheet, TextInput, View } from "react-native";
+import { Button, Keyboard, StyleSheet, TextInput, TouchableWithoutFeedback, View } from "react-native";
 import { COLORS } from "./styleConfig";
 
 export const Question = ({ setProblem, setModalVisible }) => {
@@ -35,16 +35,20 @@ export const Question = ({ setProblem, setModalVisible }) => {
   const onSubmit = () => {
     if (question) {
       setProblem(question);
-      setModalVisible(true);
       clearQuestionField();
+    } else {
+      setProblem("Что бы это ни было,");
     }
+    setModalVisible(true);
   };
 
   return (
-    <View style={styles.container}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
       <TextInput
         autoCapitalize="sentences"
-        autoFocus={true}
+        autoCompleteType="off"
+        autoFocus={false}
         style={styles.input}
         onChangeText={setQuestion}
         value={question}
@@ -53,21 +57,20 @@ export const Question = ({ setProblem, setModalVisible }) => {
         onSubmitEditing={onSubmit}
       />
       <Button
-        disabled={!question}
         onPress={onSubmit}
         title={buttonTitle}
         color={COLORS.grey}
         accessibilityLabel="Выбрать победителя"
       />
-    </View>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    height: 200,
-    width: "80%",
-    justifyContent: "space-between"
+    flex: 1,
+    justifyContent: "space-around"
   },
   input: {
     fontSize: 16,
