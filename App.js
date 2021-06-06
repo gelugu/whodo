@@ -5,7 +5,7 @@ import { Answer } from "./src/Answer";
 import { Question } from "./src/Question";
 import { COLORS } from "./src/styleConfig";
 
-const SANDBOX = true;
+const SANDBOX = false;
 
 export default function App() {
   const [problem, setProblem] = useState("");
