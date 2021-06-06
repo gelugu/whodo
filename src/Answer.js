@@ -23,9 +23,11 @@ export const Answer = ({ problem, clearProplem, setModalVisible }) => {
 
   return (
     <View style={styles.container}>
+      <View>
       <Text style={styles.text}>{problem}</Text>
       <Text style={styles.text}>достаётся</Text>
       <Text style={styles.text}>{winner}</Text>
+      </View>
       <Button
         onPress={onButtonPress}
         title="Что-то ещё?"
@@ -39,13 +41,18 @@ export const Answer = ({ problem, clearProplem, setModalVisible }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: "center",
+    justifyContent: "space-around",
     backgroundColor: COLORS.light,
+  },
+  textContainer: {
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
   text: {
-    margin: 10,
+    marginBottom: 10,
     fontSize: 16,
+    textAlign: "center",
   },
-  button: {},
 });
