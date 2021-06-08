@@ -18,7 +18,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={[COLORS.her, COLORS.her, COLORS.her, COLORS.his, COLORS.his]}
+        colors={[COLORS.his, COLORS.his, COLORS.his, COLORS.her, COLORS.her]}
         style={styles.background}
       >
         <Question setProblem={setProblem} setModalVisible={setModalVisible} />
