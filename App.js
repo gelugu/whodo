@@ -1,9 +1,8 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
-import { Alert, Dimensions, Modal, StyleSheet, View } from "react-native";
+import { Alert, Dimensions, Modal, StatusBar, StyleSheet, View } from "react-native";
 import { Sandbox } from "./Sandbox";
 import { Answer } from "./src/Answer";
-import { Gradient } from "./src/Gradient";
 import { Question } from "./src/Question";
 import { COLORS } from "./src/styleConfig";
 
@@ -17,8 +16,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <StatusBar hidden={true} />
       <LinearGradient
-        colors={[COLORS.his, COLORS.his, COLORS.his, COLORS.her, COLORS.her]}
+        colors={[COLORS.his, COLORS.his, COLORS.her, COLORS.her]}
         style={styles.background}
       >
         <Question setProblem={setProblem} setModalVisible={setModalVisible} />
