@@ -1,9 +1,24 @@
+import { LinearGradient } from "expo-linear-gradient";
 import React, { useEffect, useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  Dimensions,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { COLORS } from "./styleConfig";
+import { Feather } from "@expo/vector-icons";
 
 export const Answer = ({ problem, clearProplem, setModalVisible }) => {
   const [winner, setWinner] = useState("");
+
+  const hisGradient = [COLORS.his, COLORS.his, COLORS.her, COLORS.her];
+  const herGradient = [COLORS.her, COLORS.her, COLORS.his, COLORS.his];
+  const hisImage = require("../assets/he.png");
+  const herImage = require("../assets/she.png");
 
   const names = ["Роме", "Милене"];
 
@@ -22,19 +37,32 @@ export const Answer = ({ problem, clearProplem, setModalVisible }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <View>
-      <Text style={styles.text}>{problem}</Text>
-      <Text style={styles.text}>достаётся</Text>
-      <Text style={styles.text}>{winner}</Text>
-      </View>
-      <Button
-        onPress={onButtonPress}
-        title="Что-то ещё?"
-        color={COLORS.grey}
-        accessibilityLabel="Выбрать победителя"
-      />
-    </View>
+    <LinearGradient
+      colors={winner === "Роме" ? hisGradient : herGradient}
+      style={styles.background}
+    >
+      <ImageBackground
+        source={winner === "Роме" ? hisImage : herImage}
+        style={styles.image}
+      >
+        <View style={styles.container}>
+          <View style={[styles.textContainer, {backgroundColor: winner === "Роме" ? COLORS.pink : COLORS.yellow}]}>
+            <Text style={styles.text}>Участь выпала</Text>
+            <Text style={styles.text}>{winner}</Text>
+          </View>
+          <View/>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={onButtonPress}>
+              <Feather
+                name="repeat"
+                size={36}
+                color={winner === "Роме" ? COLORS.yellow : COLORS.pink}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ImageBackground>
+    </LinearGradient>
   );
 };
 
@@ -43,16 +71,33 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-around",
-    backgroundColor: COLORS.light,
   },
   textContainer: {
-    flex: 1,
+    padding: 25,
     alignItems: "center",
     justifyContent: "center",
+    borderRadius: 10,
   },
   text: {
-    marginBottom: 10,
-    fontSize: 16,
+    fontSize: 24,
+    fontFamily: "CourierPrimeRegular",
     textAlign: "center",
+    color: COLORS.his,
+  },
+  buttonContainer: {
+    width: Dimensions.get("screen").width,
+    marginRight: 50,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  background: {
+    flex: 1,
+    width: Dimensions.get("screen").width,
+    height: Dimensions.get("screen").height,
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
   },
 });

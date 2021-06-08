@@ -1,36 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { Button, Keyboard, StyleSheet, TextInput, TouchableWithoutFeedback, View } from "react-native";
+import {
+  Button,
+  Dimensions,
+  Keyboard,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import { COLORS } from "./styleConfig";
 
 export const Question = ({ setProblem, setModalVisible }) => {
   const [placeholder, setPlaceholder] = useState("");
-  const [buttonTitle, setButtonTitle] = useState("");
   const [question, setQuestion] = useState("");
 
   useEffect(() => {
     pickPlaceholder();
-    pickButtonTitle();
   }, []);
 
   const CLEAR_DELAY = 500;
 
-  const placeholders = ["О чём спорим?", "Я уже знаю кто это будет!"];
+  const placeholders = ["Кто прав?", "Кто виноват?", "Кто будет мыть посуду?"];
   const buttonTitles = ["Кто это будет?"];
 
   const pickPlaceholder = () => {
     const randomIndex = Math.floor(Math.random() * placeholders.length);
     setPlaceholder(placeholders[randomIndex]);
   };
-  const pickButtonTitle = () => {
-    const randomIndex = Math.floor(Math.random() * buttonTitles.length);
-    setButtonTitle(buttonTitles[randomIndex]);
-  };
 
   const clearQuestionField = () => {
     setTimeout(() => {
       setQuestion("");
     }, CLEAR_DELAY);
-  }
+  };
 
   const onSubmit = () => {
     if (question) {
@@ -45,23 +50,26 @@ export const Question = ({ setProblem, setModalVisible }) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
-      <TextInput
-        autoCapitalize="sentences"
-        autoCompleteType="off"
-        autoFocus={false}
-        style={styles.input}
-        onChangeText={setQuestion}
-        value={question}
-        placeholder={placeholder}
-        selectionColor={COLORS.dark}
-        onSubmitEditing={onSubmit}
-      />
-      <Button
-        onPress={onSubmit}
-        title={buttonTitle}
-        color={COLORS.grey}
-        accessibilityLabel="Выбрать победителя"
-      />
+        <TextInput
+          autoCapitalize="sentences"
+          autoCompleteType="off"
+          autoFocus={false}
+          style={styles.input}
+          onChangeText={setQuestion}
+          value={question}
+          placeholder={placeholder}
+          placeholderTextColor={COLORS.light + "aa"}
+          selectionColor={COLORS.yellow}
+          onSubmitEditing={onSubmit}
+          maxLength={87}
+          multiline
+          textAlignVertical="center"
+        />
+        <TouchableOpacity onPress={onSubmit} style={styles.button}>
+          <Text style={styles.label}>УЗНАТЬ</Text>
+          <Text style={styles.label}>ИМЯ</Text>
+          <Text style={styles.label}>СЧАСТЛИВЧИКА</Text>
+        </TouchableOpacity>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -70,11 +78,13 @@ export const Question = ({ setProblem, setModalVisible }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "space-around"
+    alignItems: "center",
+    justifyContent: "space-around",
   },
   input: {
     fontSize: 16,
-    color: COLORS.dark,
+    color: COLORS.light,
+    fontFamily: "CourierPrimeRegular",
 
     textAlign: "center",
 
@@ -83,9 +93,20 @@ const styles = StyleSheet.create({
 
     borderRadius: 5,
     borderWidth: 3,
-    borderBottomColor: COLORS.her,
-    borderRightColor: COLORS.her,
-    borderLeftColor: COLORS.his,
-    borderTopColor: COLORS.his,
+    borderColor: COLORS.yellow,
+    width: Dimensions.get("screen").width * 0.9,
+  },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: 200,
+    height: 200,
+    backgroundColor: COLORS.his,
+    borderRadius: 100,
+  },
+  label: {
+    fontSize: 16,
+    fontFamily: "CourierPrimeBold",
+    color: COLORS.light,
   },
 });
