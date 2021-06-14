@@ -47,7 +47,7 @@ export const Answer = ({ problem, clearProplem, setModalVisible }) => {
         <View style={styles.container}>
           <View style={[styles.textContainer, {backgroundColor: winner === "Рома" ? COLORS.pink : COLORS.yellow}]}>
             <Text style={styles.text}>{problem}</Text>
-            <Text style={styles.text}>{`Это будет, ${winner}`}</Text>
+            <Text style={styles.text}>{`Это сделает, ${winner}`}</Text>
           </View>
           <View/>
           <View style={styles.buttonContainer}>

@@ -24,7 +24,6 @@ export const Question = ({ setProblem, setModalVisible }) => {
   const CLEAR_DELAY = 500;
 
   const placeholders = ["Кто прав?", "Кто виноват?", "Кто будет мыть посуду?"];
-  const buttonTitles = ["Кто это будет?"];
 
   const pickPlaceholder = () => {
     const randomIndex = Math.floor(Math.random() * placeholders.length);
@@ -42,7 +41,7 @@ export const Question = ({ setProblem, setModalVisible }) => {
       setProblem(question);
       clearQuestionField();
     } else {
-      setProblem("Что бы это ни было, оно");
+      setProblem("Что бы это ни было...");
     }
     setModalVisible(true);
   };
@@ -99,10 +98,10 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     justifyContent: "center",
-    width: 200,
-    height: 200,
+    width: Dimensions.get("window").width * 0.8,
+    height: Dimensions.get("window").width * 0.8,
     backgroundColor: COLORS.his,
-    borderRadius: 100,
+    borderRadius: Dimensions.get("window").width * 0.4,
   },
   label: {
     fontSize: 16,
