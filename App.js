@@ -24,11 +24,6 @@ export default function App() {
     CourierPrimeBoldItalic: require("./assets/fonts/CourierPrime-BoldItalic.ttf"),
   });
 
-  // if (!fontsLoaded)
-  //   return (
-  //     <Image style={styles.loader} source={{ uri: "./assets/load.svg" }} />
-  //   );
-
   const [problem, setProblem] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
 

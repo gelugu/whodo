@@ -61,7 +61,7 @@ export const Question = ({ setProblem, setModalVisible }) => {
           placeholderTextColor={COLORS.light + "aa"}
           selectionColor={COLORS.yellow}
           onSubmitEditing={onSubmit}
-          maxLength={87}
+          maxLength={60}
           multiline
           textAlignVertical="center"
         />

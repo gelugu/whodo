@@ -1,7 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useEffect, useState } from "react";
 import {
-  Button,
   Dimensions,
   ImageBackground,
   StyleSheet,
@@ -20,7 +19,7 @@ export const Answer = ({ problem, clearProplem, setModalVisible }) => {
   const hisImage = require("../assets/he.png");
   const herImage = require("../assets/she.png");
 
-  const names = ["Роме", "Милене"];
+  const names = ["Рома", "Милена"];
 
   const pickWhoDo = () => {
     const randomIndex = Math.floor(Math.random() * names.length);
@@ -38,17 +37,17 @@ export const Answer = ({ problem, clearProplem, setModalVisible }) => {
 
   return (
     <LinearGradient
-      colors={winner === "Роме" ? hisGradient : herGradient}
+      colors={winner === "Рома" ? hisGradient : herGradient}
       style={styles.background}
     >
       <ImageBackground
-        source={winner === "Роме" ? hisImage : herImage}
+        source={winner === "Рома" ? hisImage : herImage}
         style={styles.image}
       >
         <View style={styles.container}>
-          <View style={[styles.textContainer, {backgroundColor: winner === "Роме" ? COLORS.pink : COLORS.yellow}]}>
-            <Text style={styles.text}>Участь выпала</Text>
-            <Text style={styles.text}>{winner}</Text>
+          <View style={[styles.textContainer, {backgroundColor: winner === "Рома" ? COLORS.pink : COLORS.yellow}]}>
+            <Text style={styles.text}>{problem}</Text>
+            <Text style={styles.text}>{`Это будет, ${winner}`}</Text>
           </View>
           <View/>
           <View style={styles.buttonContainer}>
@@ -56,7 +55,7 @@ export const Answer = ({ problem, clearProplem, setModalVisible }) => {
               <Feather
                 name="repeat"
                 size={36}
-                color={winner === "Роме" ? COLORS.yellow : COLORS.pink}
+                color={winner === "Рома" ? COLORS.yellow : COLORS.pink}
               />
             </TouchableOpacity>
           </View>
@@ -73,6 +72,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   textContainer: {
+    marginHorizontal: 15,
     padding: 25,
     alignItems: "center",
     justifyContent: "center",
